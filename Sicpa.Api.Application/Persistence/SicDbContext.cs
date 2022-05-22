@@ -1,10 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Sicpa.Api.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Sicpa.Api.Application.Persistence
 {

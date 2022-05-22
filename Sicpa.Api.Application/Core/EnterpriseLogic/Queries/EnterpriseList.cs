@@ -2,14 +2,12 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Sicpa.Api.Application.Core.EnterpriseLogic.Commands;
 using Sicpa.Api.Application.Persistence;
 using Sicpa.Api.Domain.Dto;
 using Sicpa.Api.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 

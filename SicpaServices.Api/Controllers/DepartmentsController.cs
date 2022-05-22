@@ -1,12 +1,8 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Sicpa.Api.Application.Core.DepartmentLogic.Commands;
 using Sicpa.Api.Application.Core.DepartmentLogic.Queries;
 using Sicpa.Api.Application.Core.EmployeeLogic.Commands;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace SicpaServices.Api.Controllers
@@ -109,7 +105,7 @@ namespace SicpaServices.Api.Controllers
 
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete([FromHeader] string requestingUser, int id)
-        {            
+        {
             var access = await mediator.Send(new EmployeeValidUser.EmployeeValidUserCommand { user = requestingUser, position = "admin" });
 
             if (access.ok)

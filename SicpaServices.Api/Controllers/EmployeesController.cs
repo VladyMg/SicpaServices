@@ -1,11 +1,7 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Sicpa.Api.Application.Core.EmployeeLogic.Commands;
 using Sicpa.Api.Application.Core.EmployeeLogic.Queries;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace SicpaServices.Api.Controllers

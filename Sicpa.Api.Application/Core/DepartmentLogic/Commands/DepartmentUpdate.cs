@@ -5,9 +5,6 @@ using Microsoft.Extensions.Logging;
 using Sicpa.Api.Application.Persistence;
 using Sicpa.Api.Domain.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -35,7 +32,7 @@ namespace Sicpa.Api.Application.Core.DepartmentLogic.Commands
         public class DepartmentUpdateValidator : AbstractValidator<DepartmentUpdateCommand>
         {
             public DepartmentUpdateValidator()
-            {                
+            {
                 RuleFor(x => x.id).NotEmpty();
                 RuleFor(x => x.description).NotEmpty();
                 RuleFor(x => x.name).NotEmpty();
