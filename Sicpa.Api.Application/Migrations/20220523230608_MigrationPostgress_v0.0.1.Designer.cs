@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Sicpa.Api.Application.Persistence;
@@ -9,9 +10,10 @@ using Sicpa.Api.Application.Persistence;
 namespace Sicpa.Api.Application.Migrations
 {
     [DbContext(typeof(SicDbContext))]
-    partial class SicDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220523230608_MigrationPostgress_v0.0.1")]
+    partial class MigrationPostgress_v001
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

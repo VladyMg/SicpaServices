@@ -10,7 +10,6 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Sicpa.Api.Application.Core.EnterpriseLogic.Commands;
 using Sicpa.Api.Application.Persistence;
-using System;
 
 namespace SicpaServices.Api
 {

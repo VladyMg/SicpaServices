@@ -32,7 +32,6 @@ namespace Sicpa.Api.Application.Core.EnterpriseLogic.Commands
             public EnterpriseUpdateValidator()
             {
                 RuleFor(x => x.id).NotEmpty();
-                RuleFor(x => x.status).NotEmpty();
                 RuleFor(x => x.address).NotEmpty();
                 RuleFor(x => x.name).NotEmpty();
                 RuleFor(x => x.phone).NotEmpty();
