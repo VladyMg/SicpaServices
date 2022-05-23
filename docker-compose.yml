@@ -5,15 +5,15 @@ networks:
       name: micronet
 services:
   # # # Sicpa Sericer Api
-  # sicpaservicesapi:
-  #   container_name: sicpaservicesapi
-  #   image: devlamo/sicpaservicesapi:v0.1.1
-  #   restart: unless-stopped
-  #   ports:
-  #     - "40100:80"
-  #   environment:
-  #     - ASPNETCORE_ENVIRONMENT=Development
-  #     - ConnectionStrings_ConnectionDb=Server=vm-postgres;Database=sicpadb;Port=5432;User Id=postgres;Password=sicpa1234;
+  sicpaservicesapi:
+    container_name: sicpaservicesapi
+    image: devlamo/sicpaservicesapi:v0.1.2
+    restart: unless-stopped
+    ports:
+      - "40100:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__ConnectionDb=Server=vm-postgres;Database=sicpadb;Port=5432;User Id=postgres;Password=sicpa1234;
   # # # Postgress Database
   db:
     container_name: vm-postgres
@@ -21,9 +21,7 @@ services:
     restart: unless-stopped
     environment:
       POSTGRES_PASSWORD: sicpa1234
-    # ports:
-    #   - 5432:5432
-    # # # Database Adminer
+  # # # Database Adminer
   adminer:
     container_name: db-adminer
     image: adminer

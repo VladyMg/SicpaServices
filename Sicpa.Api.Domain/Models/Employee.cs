@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Sicpa.Api.Domain.Models
 {
+    [Table("employees")]
     public class Employee : Entity
     {
         public int age { get; set; }
