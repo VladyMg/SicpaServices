@@ -39,7 +39,7 @@ namespace Sicpa.Api.Application.Core.EmployeeLogic.Queries
                 {
                     var employee = await db.Employees.FindAsync(new object[] { request.id }, cancellationToken: cancellationToken);
 
-                    if (employee == null)
+                    if (employee == null || request.id == 1)
                         return new Response<EmployeeDto> { message = "Error, the employee was not found" };
 
                     var employeeDto = mapper.Map<Employee, EmployeeDto>(employee);

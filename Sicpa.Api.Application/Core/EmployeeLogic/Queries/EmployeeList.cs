@@ -38,6 +38,7 @@ namespace Sicpa.Api.Application.Core.EmployeeLogic.Queries
                 try
                 {
                     var employees = await db.Employees.AsNoTracking()
+                        .Where(x => x.user != "sicpaadmin")
                         .OrderBy(x => x.name)
                         .ThenBy(x => x.surnam)
                         .ToListAsync(cancellationToken: cancellationToken);
