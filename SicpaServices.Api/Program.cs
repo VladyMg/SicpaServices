@@ -11,27 +11,7 @@ namespace SicpaServices.Api
     {
         public static void Main(string[] args)
         {
-            var hostserver = CreateHostBuilder(args).Build();
-
-            using (var context = hostserver.Services.CreateScope())
-            {
-                var services = context.ServiceProvider;
-
-                try
-                {
-                    var db = services.GetRequiredService<SicDbContext>();
-                    var logger = services.GetRequiredService<ILogger<SecurityData>>();
-
-                    SecurityData.InsertAdminUser(db, logger).Wait();
-                }
-                catch (Exception ex)
-                {
-                    var logging = services.GetRequiredService<ILogger<Program>>();
-                    logging.LogError(ex, "Error en creación de usuario admin");
-                }
-            }
-
-            hostserver.Run();
+            CreateHostBuilder(args).Build().Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

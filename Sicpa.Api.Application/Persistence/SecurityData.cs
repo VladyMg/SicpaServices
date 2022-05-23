@@ -36,7 +36,6 @@ namespace Sicpa.Api.Application.Persistence
             }
             catch (Exception ex)
             {
-
                 logger.LogError(ex.Message, ex);
             }
         }

@@ -6,9 +6,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Sicpa.Api.Application.Core.EnterpriseLogic.Commands;
 using Sicpa.Api.Application.Persistence;
+using System;
 
 namespace SicpaServices.Api
 {
@@ -51,7 +53,7 @@ namespace SicpaServices.Api
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, SicDbContext db)
         {
             if (env.IsDevelopment())
             {
@@ -59,6 +61,8 @@ namespace SicpaServices.Api
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "SicpaServices.Api v1"));
             }
+
+            db.Database.Migrate();
 
             app.UseRouting();
 
@@ -70,6 +74,15 @@ namespace SicpaServices.Api
             {
                 endpoints.MapControllers();
             });
+
+            ConfigureSegurityData(app, db);
+        }
+
+        private void ConfigureSegurityData(IApplicationBuilder app, SicDbContext db)
+        {
+            var logger = app.ApplicationServices.GetRequiredService<ILogger<SecurityData>>();
+
+            SecurityData.InsertAdminUser(db, logger).Wait();
         }
     }
 }

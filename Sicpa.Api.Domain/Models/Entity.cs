@@ -5,7 +5,7 @@ namespace Sicpa.Api.Domain.Models
 {
     public class Entity
     {
-        [Required]
+        [Key]
         public int id { get; set; }
 
         [Required]
