@@ -7,7 +7,7 @@ services:
   # # # Sicpa Sericer Api
   sicpaservicesapi:
     container_name: sicpaservicesapi
-    image: devlamo/sicpaservicesapi:v0.2.3
+    image: devlamo/sicpaservicesapi:v0.2.4
     restart: unless-stopped
     ports:
       - "40100:80"

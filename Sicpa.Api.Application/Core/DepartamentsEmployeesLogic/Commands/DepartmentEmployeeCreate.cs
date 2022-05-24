@@ -73,7 +73,7 @@ namespace Sicpa.Api.Application.Core.DepartamentsEmployeesLogic.Commands
                         cancellationToken: cancellationToken);
 
                     if (de != null)
-                        return new Response<string> { message = "Error, relationship was not found" };
+                        return new Response<string> { ok = true, resp = "The relationship already exists" };
 
                     de = mapper.Map<DepartmentEmployeeCreateCommand, Department_Empoyee>(request);
                     de.created_by = request.requestingUser;
