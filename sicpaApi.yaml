@@ -1,0 +1,91 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vm-postgres
+  labels:
+    app: vm-postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vm-postgres
+  template:
+    metadata:
+      labels:
+        app: vm-postgres
+    spec:
+      containers:
+        - name: vm-postgres
+          image: postgres
+          imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              memory: "200Mi"
+              cpu: "20m"
+            limits:
+              memory: "350Mi"
+              cpu: "200m"
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_PASSWORD
+              value: $$Your password here$$
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: vm-postgres-svc
+spec:
+  type: ClusterIP
+  ports:
+    - port: 5432
+  selector:
+    app: vm-postgres
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sicpaservisesapi
+  labels:
+    app: sicpaservisesapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sicpaservisesapi
+  template:
+    metadata:
+      labels:
+        app: sicpaservisesapi
+    spec:
+      containers:
+        - name: sicpaservisesapi
+          image: devlamo/sicpaservicesapi:v0.2.5
+          imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              memory: "200Mi"
+              cpu: "20m"
+            limits:
+              memory: "350Mi"
+              cpu: "200m"
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          env:
+            - name: ConnectionStrings__ConnectionDb
+              value: Server=vm-postgres-svc;Database=sicpadb;Port=5432;User Id=postgres;Password=$$Your password here$$;
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Development
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sicpaservisesapi-svc
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      protocol: TCP
+  selector:
+    app: sicpaservisesapi
